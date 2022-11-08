@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.9StvO/test.9StvO.log
-./data/earth_models/qmod3
-output/test.9StvO/test.9StvO.q
-output/test.9StvO/test.9StvO_0.eig_fix
-y
-
-!

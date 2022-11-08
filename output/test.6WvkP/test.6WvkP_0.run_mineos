@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.6WvkP/test.6WvkP.log
-output/test.6WvkP/test.6WvkP.card
-output/test.6WvkP/test.6WvkP_0.asc
-output/test.6WvkP/test.6WvkP_0.eig
-output/test.6WvkP/test.6WvkP_0.mode
-!

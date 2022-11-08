@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.DsRLa/test.DsRLa.log
-output/test.DsRLa/test.DsRLa.card
-output/test.DsRLa/test.DsRLa_0.asc
-output/test.DsRLa/test.DsRLa_0.eig
-output/test.DsRLa/test.DsRLa_0.mode
-!

@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.sMISf/test.sMISf.log
-output/test.sMISf/test.sMISf.card
-output/test.sMISf/test.sMISf_0.asc
-output/test.sMISf/test.sMISf_0.eig
-output/test.sMISf/test.sMISf_0.mode
-!

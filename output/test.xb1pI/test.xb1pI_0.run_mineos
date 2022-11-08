@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.xb1pI/test.xb1pI.log
-output/test.xb1pI/test.xb1pI.card
-output/test.xb1pI/test.xb1pI_0.asc
-output/test.xb1pI/test.xb1pI_0.eig
-output/test.xb1pI/test.xb1pI_0.mode
-!

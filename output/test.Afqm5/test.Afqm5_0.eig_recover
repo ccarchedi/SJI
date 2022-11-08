@@ -1,6 +1,0 @@
-#!/bin/bash
-#
-../MINEOS/bin/eig_recover << ! 
-output/test.Afqm5/test.Afqm5_0.eig
-2602
-!

@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.9YRPk/test.9YRPk.log
-./data/earth_models/qmod3
-output/test.9YRPk/test.9YRPk.q
-output/test.9YRPk/test.9YRPk_0.eig_fix
-y
-
-!

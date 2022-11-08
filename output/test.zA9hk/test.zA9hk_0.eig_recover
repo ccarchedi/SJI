@@ -1,6 +1,0 @@
-#!/bin/bash
-#
-../MINEOS/bin/eig_recover << ! 
-output/test.zA9hk/test.zA9hk_0.eig
-2602
-!

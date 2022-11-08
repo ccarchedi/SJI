@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.m2Rim/test.m2Rim.log
-output/test.m2Rim/test.m2Rim.card
-output/test.m2Rim/test.m2Rim_0.asc
-output/test.m2Rim/test.m2Rim_0.eig
-output/test.m2Rim/test.m2Rim_0.mode
-!

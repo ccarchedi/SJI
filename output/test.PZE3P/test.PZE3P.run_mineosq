@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.PZE3P/test.PZE3P.log
-./data/earth_models/qmod3
-output/test.PZE3P/test.PZE3P.q
-output/test.PZE3P/test.PZE3P_0.eig_fix
-y
-
-!

@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.RtQ4D/test.RtQ4D.log
-./data/earth_models/qmod3
-output/test.RtQ4D/test.RtQ4D.q
-output/test.RtQ4D/test.RtQ4D_0.eig_fix
-y
-
-!

@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.Afqm5/test.Afqm5.log
-output/test.Afqm5/test.Afqm5.card
-output/test.Afqm5/test.Afqm5_0.asc
-output/test.Afqm5/test.Afqm5_0.eig
-output/test.Afqm5/test.Afqm5_0.mode
-!

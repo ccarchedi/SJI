@@ -1,6 +1,0 @@
-../MINEOS/bin/mineos_nohang << ! > output/test.LluKd/test.LluKd.log
-output/test.LluKd/test.LluKd.card
-output/test.LluKd/test.LluKd_0.asc
-output/test.LluKd/test.LluKd_0.eig
-output/test.LluKd/test.LluKd_0.mode
-!
