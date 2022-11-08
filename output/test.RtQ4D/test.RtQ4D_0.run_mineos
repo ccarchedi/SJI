@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.RtQ4D/test.RtQ4D.log
+output/test.RtQ4D/test.RtQ4D.card
+output/test.RtQ4D/test.RtQ4D_0.asc
+output/test.RtQ4D/test.RtQ4D_0.eig
+output/test.RtQ4D/test.RtQ4D_0.mode
+!

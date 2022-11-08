@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.JEkV2/test.JEkV2.log
+output/test.JEkV2/test.JEkV2.card
+output/test.JEkV2/test.JEkV2_0.asc
+output/test.JEkV2/test.JEkV2_0.eig
+output/test.JEkV2/test.JEkV2_0.mode
+!

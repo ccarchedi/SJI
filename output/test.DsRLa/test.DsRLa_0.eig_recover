@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.DsRLa/test.DsRLa_0.eig
+2602
+!

@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.xb1pI/test.xb1pI_0.eig
+2602
+!

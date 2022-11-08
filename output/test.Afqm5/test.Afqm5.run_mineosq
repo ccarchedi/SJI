@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.Afqm5/test.Afqm5.log
+./data/earth_models/qmod3
+output/test.Afqm5/test.Afqm5.q
+output/test.Afqm5/test.Afqm5_0.eig_fix
+y
+
+!

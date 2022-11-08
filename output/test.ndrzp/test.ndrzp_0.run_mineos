@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.ndrzp/test.ndrzp.log
+output/test.ndrzp/test.ndrzp.card
+output/test.ndrzp/test.ndrzp_0.asc
+output/test.ndrzp/test.ndrzp_0.eig
+output/test.ndrzp/test.ndrzp_0.mode
+!

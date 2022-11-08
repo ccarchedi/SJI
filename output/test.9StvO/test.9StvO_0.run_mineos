@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.9StvO/test.9StvO.log
+output/test.9StvO/test.9StvO.card
+output/test.9StvO/test.9StvO_0.asc
+output/test.9StvO/test.9StvO_0.eig
+output/test.9StvO/test.9StvO_0.mode
+!

@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.6WvkP/test.6WvkP.log
+./data/earth_models/qmod3
+output/test.6WvkP/test.6WvkP.q
+output/test.6WvkP/test.6WvkP_0.eig_fix
+y
+
+!

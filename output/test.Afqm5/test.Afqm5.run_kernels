@@ -1,0 +1,141 @@
+#!/bin/bash
+#
+echo "======================" > output/test.Afqm5/test.Afqm5.log
+echo "Stripping MINEOS" >> output/test.Afqm5/test.Afqm5.log
+#
+../MINEOS/bin/mineos_strip <<! >> output/test.Afqm5/test.Afqm5.log
+output/test.Afqm5/test.Afqm5.strip
+output/test.Afqm5/test.Afqm5_0.eig_fix
+
+
+!
+#
+echo "======================" > output/test.Afqm5/test.Afqm5.log
+echo "Done stripping, now calculating tables" > output/test.Afqm5/test.Afqm5.log
+#
+../MINEOS/bin/mineos_table <<! >> output/test.Afqm5/test.Afqm5.log
+output/test.Afqm5/test.Afqm5.table
+40000
+0 200.1
+1 5500
+output/test.Afqm5/test.Afqm5.q
+output/test.Afqm5/test.Afqm5.strip
+
+!
+#
+echo "======================" > output/test.Afqm5/test.Afqm5.log
+echo "Creating branch file" > output/test.Afqm5/test.Afqm5.log
+#
+../MINEOS/bin/plot_wk <<! >> output/test.Afqm5/test.Afqm5.log
+table output/test.Afqm5/test.Afqm5.table_hdr
+search
+1 0.0 200.1
+99 0 0
+branch
+
+quit
+!
+#
+echo "======================" > output/test.Afqm5/test.Afqm5.log
+echo "Making frechet phV kernels binary" > output/test.Afqm5/test.Afqm5.log
+#
+if [ -f "output/test.Afqm5/test.Afqm5.cvfrechet" ]; then rm output/test.Afqm5/test.Afqm5.cvfrechet; fi
+../MINEOS/bin/frechet_cv <<! >> output/test.Afqm5/test.Afqm5.log
+./data/earth_models/qmod3
+output/test.Afqm5/test.Afqm5.table_hdr.branch
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_0.eig_fix
+0
+
+
+!
+#
+echo "======================" > output/test.Afqm5/test.Afqm5.log
+echo "Writing phV kernel files for each period" > output/test.Afqm5/test.Afqm5.log
+#
+                 ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_5.0s
+5.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_6.0s
+6.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_8.0s
+8.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_10.0s
+10.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_12.0s
+12.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_15.0s
+15.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_20.0s
+20.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_25.0s
+25.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_32.0s
+32.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_40.0s
+40.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_50.0s
+50.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_60.0s
+60.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_80.0s
+80.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_100.0s
+100.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_120.0s
+120.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_140.0s
+140.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.Afqm5/test.Afqm5.cvfrechet
+output/test.Afqm5/test.Afqm5_cvfrechet_180.0s
+180.00
+!
+            

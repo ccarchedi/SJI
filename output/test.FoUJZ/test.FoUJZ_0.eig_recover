@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.FoUJZ/test.FoUJZ_0.eig
+2602
+!

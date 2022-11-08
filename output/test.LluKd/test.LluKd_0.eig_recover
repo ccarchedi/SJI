@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.LluKd/test.LluKd_0.eig
+2602
+!

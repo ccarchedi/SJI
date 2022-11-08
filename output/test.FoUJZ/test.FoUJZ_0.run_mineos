@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.FoUJZ/test.FoUJZ.log
+output/test.FoUJZ/test.FoUJZ.card
+output/test.FoUJZ/test.FoUJZ_0.asc
+output/test.FoUJZ/test.FoUJZ_0.eig
+output/test.FoUJZ/test.FoUJZ_0.mode
+!

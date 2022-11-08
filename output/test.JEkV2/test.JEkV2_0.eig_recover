@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.JEkV2/test.JEkV2_0.eig
+2602
+!

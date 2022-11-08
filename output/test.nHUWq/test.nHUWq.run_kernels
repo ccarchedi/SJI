@@ -1,0 +1,141 @@
+#!/bin/bash
+#
+echo "======================" > output/test.nHUWq/test.nHUWq.log
+echo "Stripping MINEOS" >> output/test.nHUWq/test.nHUWq.log
+#
+../MINEOS/bin/mineos_strip <<! >> output/test.nHUWq/test.nHUWq.log
+output/test.nHUWq/test.nHUWq.strip
+output/test.nHUWq/test.nHUWq_0.eig_fix
+
+
+!
+#
+echo "======================" > output/test.nHUWq/test.nHUWq.log
+echo "Done stripping, now calculating tables" > output/test.nHUWq/test.nHUWq.log
+#
+../MINEOS/bin/mineos_table <<! >> output/test.nHUWq/test.nHUWq.log
+output/test.nHUWq/test.nHUWq.table
+40000
+0 200.1
+1 5500
+output/test.nHUWq/test.nHUWq.q
+output/test.nHUWq/test.nHUWq.strip
+
+!
+#
+echo "======================" > output/test.nHUWq/test.nHUWq.log
+echo "Creating branch file" > output/test.nHUWq/test.nHUWq.log
+#
+../MINEOS/bin/plot_wk <<! >> output/test.nHUWq/test.nHUWq.log
+table output/test.nHUWq/test.nHUWq.table_hdr
+search
+1 0.0 200.1
+99 0 0
+branch
+
+quit
+!
+#
+echo "======================" > output/test.nHUWq/test.nHUWq.log
+echo "Making frechet phV kernels binary" > output/test.nHUWq/test.nHUWq.log
+#
+if [ -f "output/test.nHUWq/test.nHUWq.cvfrechet" ]; then rm output/test.nHUWq/test.nHUWq.cvfrechet; fi
+../MINEOS/bin/frechet_cv <<! >> output/test.nHUWq/test.nHUWq.log
+./data/earth_models/qmod3
+output/test.nHUWq/test.nHUWq.table_hdr.branch
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_0.eig_fix
+0
+
+
+!
+#
+echo "======================" > output/test.nHUWq/test.nHUWq.log
+echo "Writing phV kernel files for each period" > output/test.nHUWq/test.nHUWq.log
+#
+                 ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_5.0s
+5.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_6.0s
+6.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_8.0s
+8.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_10.0s
+10.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_12.0s
+12.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_15.0s
+15.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_20.0s
+20.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_25.0s
+25.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_32.0s
+32.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_40.0s
+40.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_50.0s
+50.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_60.0s
+60.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_80.0s
+80.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_100.0s
+100.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_120.0s
+120.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_140.0s
+140.00
+!
+            ../MINEOS/bin/draw_frechet_gv <<!
+output/test.nHUWq/test.nHUWq.cvfrechet
+output/test.nHUWq/test.nHUWq_cvfrechet_180.0s
+180.00
+!
+            

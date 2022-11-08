@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.9YRPk/test.9YRPk.log
+output/test.9YRPk/test.9YRPk.card
+output/test.9YRPk/test.9YRPk_0.asc
+output/test.9YRPk/test.9YRPk_0.eig
+output/test.9YRPk/test.9YRPk_0.mode
+!

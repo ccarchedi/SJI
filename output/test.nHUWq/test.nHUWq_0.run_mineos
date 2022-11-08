@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.nHUWq/test.nHUWq.log
+output/test.nHUWq/test.nHUWq.card
+output/test.nHUWq/test.nHUWq_0.asc
+output/test.nHUWq/test.nHUWq_0.eig
+output/test.nHUWq/test.nHUWq_0.mode
+!

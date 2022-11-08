@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.DsRLa/test.DsRLa.log
+./data/earth_models/qmod3
+output/test.DsRLa/test.DsRLa.q
+output/test.DsRLa/test.DsRLa_0.eig_fix
+y
+
+!

@@ -1,0 +1,6 @@
+../MINEOS/bin/mineos_nohang << ! > output/test.a296r/test.a296r.log
+output/test.a296r/test.a296r.card
+output/test.a296r/test.a296r_0.asc
+output/test.a296r/test.a296r_0.eig
+output/test.a296r/test.a296r_0.mode
+!

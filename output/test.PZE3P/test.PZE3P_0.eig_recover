@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.PZE3P/test.PZE3P_0.eig
+2602
+!

@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.ndrzp/test.ndrzp_0.eig
+2602
+!

@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+../MINEOS/bin/mineos_qcorrectphv << ! >> output/test.ndrzp/test.ndrzp.log
+./data/earth_models/qmod3
+output/test.ndrzp/test.ndrzp.q
+output/test.ndrzp/test.ndrzp_0.eig_fix
+y
+
+!

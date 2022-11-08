@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+../MINEOS/bin/eig_recover << ! 
+output/test.9StvO/test.9StvO_0.eig
+2602
+!
