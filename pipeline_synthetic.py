@@ -20,7 +20,7 @@ from copy import deepcopy
 class FailCheckLimit(Exception):
     pass
 
-def run_inversion_syn(name:str, mdep:int, attempts:int, lithorder:int):
+def run_inversion_syn(name:str, mdep:int, attempts:int):
 
     #give it a random id (extremely low collision probability between runs)
     name = name + "." + ''.join(choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=5))
@@ -33,7 +33,7 @@ def run_inversion_syn(name:str, mdep:int, attempts:int, lithorder:int):
 
     model_params = define_models.ModelParams( depth_limits=np.array([0., mdep]),
         id=name, randomize_model=False, randomize_data=False,
-        method='mineos',min_layer_thickness=6,
+        method='disba',min_layer_thickness=6,
             roughness = (2,1,1000,2,0),
             to_0_grad = (1,0,0,0,0), head_wave=True, breadth=1)
 
@@ -87,7 +87,7 @@ def run_inversion_syn(name:str, mdep:int, attempts:int, lithorder:int):
             60.,  80., 100., 120., 140., 180.]),
             dispersion_sig=np.array([0.05,0.05,0.05,0.025,0.025,0.025,0.025,0.025,0.025,0.025,
                                 0.028,0.034,0.045,0.056,0.066,0.077,0.098]),
-            lithosphere_order = lithorder, melt_layer = np.array([ 50, 0.5, 0.5 ]))
+            lithosphere_order = 2, melt_layer = np.array([ 50, 0.5, 0.5 ]))
 
         #do some tests to see if the model is ok (some of the random values overlap)
         #remove models with 1) lithosphere thinner than 20 km, moho jumps largers that 25%, or positive LAB jumps
@@ -190,10 +190,10 @@ def run_inversion_syn(name:str, mdep:int, attempts:int, lithorder:int):
 
     return 1
 
-def main(name:str, nsyns:int=1, mdep:int=400, attempts:int=50, lithorder:int=2):
+def main(name:str, nsyns:int=1, mdep:int=400, attempts:int=5):
 
     for k in np.arange(0, nsyns):
-        tmp = run_inversion_syn(name, mdep, attempts,lithorder)
+        tmp = run_inversion_syn(name, mdep, attempts)
     #pool = mp.Pool(mp.cpu_count())
     #list(pool.map(lambda k:run_inversion_syn(name, mdep, attempts, lithorder), range(0,nsyns)))
 

@@ -195,8 +195,6 @@ def _build_partial_derivatives_matrix_sw(kernels:pd.DataFrame,
     #     #      - np.arange(len(model_params.boundaries[0]), 0, -1))
     bl_inds = len(model.thickness) + np.arange(len(np.atleast_1d(model_params.boundaries[1])))
 
-    #breakpoint()
-
     return G_inversion_model_sw[:, np.append(model.d_inds, bl_inds)]
 
 def _integrate_dc_dvsv_dvsv_dp_indepth(G_MINEOS, depth, dm_dp_mat):

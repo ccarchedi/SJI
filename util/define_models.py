@@ -311,9 +311,21 @@ def setup_starting_model(model_params: ModelParams, location: tuple, breadth:np.
     #else:
     #    print('This model ID has already been used!') jsb
 
-    # Load in Crust 1.0 crustal structure, defined globally (but coarsely)
-    #thick, vs = constraints.get_vels_Crust1(location)
-    thick, vs = constraints.get_vels_ShenRitzwoller2016(location)
+    ref_model =  pd.read_csv(model_params.ref_card_csv_name)
+
+    vs    = np.flip(ref_model["vsv"].to_numpy())/1000
+    depth = ref_model["radius"].to_numpy()/1000
+    depth -= depth[-1]
+    depth = np.flip(depth)
+    depth *= -1
+
+    vs    = vs[ depth < model_params.depth_limits[1] ]
+    depth = depth[ depth < model_params.depth_limits[1] ]
+    thick = np.hstack((0,np.diff(depth)))
+    #thick[ thick < 0.1 ] = 0.1
+
+    vs    = np.ndarray.tolist(vs)
+    thick = np.ndarray.tolist(thick)
 
     # Fill in to the base of the model
     _fill_in_base_of_model(thick, vs, model_params)
@@ -770,6 +782,8 @@ def convert_vsv_model_to_mineos_model(vsv_model:VsvModel, model_params:ModelPara
     #start at the top with Vs0, make a new layer when ΔVs > 0.1 jsb
     ddz = 0.01#depth increment to search by
     Vs0 = vsv_model.vsv[0]
+
+    """
     while np.sum(depth) < model_params.depth_limits[1]:
         #find the next point to which the velocity reaches Vs0+0.1 by stepping in tiny increments
 
@@ -801,14 +815,15 @@ def convert_vsv_model_to_mineos_model(vsv_model:VsvModel, model_params:ModelPara
     depth     = np.flipud(np.cumsum(depth))
     depth[0]  = model_params.depth_limits[1]#it will have overshot
     radius    = (radius_Earth - depth)*1e3
+    """
 
     #old block that makes a card model every 2 km
-    #depth  = np.cumsum(depth)
-    #step   = model_params.min_layer_thickness / 3
-    #radius = np.arange(radius_model_base, radius_model_top, step)
-    #radius = np.append(radius, radius_model_top)
-    #depth  = (radius_Earth - radius) # still in km at this point
-    #radius *= 1e3 # convert to SI
+    depth  = np.cumsum(depth)
+    step   = model_params.min_layer_thickness / 3
+    radius = np.arange(radius_model_base, radius_model_top, step)
+    radius = np.append(radius, radius_model_top)
+    depth  = (radius_Earth - radius) # still in km at this point
+    radius *= 1e3 # convert to SI
 
     vsv = np.interp(depth,
                     np.cumsum(vsv_model.thickness),
@@ -903,6 +918,7 @@ def convert_vsv_model_to_disba_model(vsv_model:VsvModel, model_params:ModelParam
     #I want to change these layers
     depth = np.array([0])
 
+    """
     #start at the top with Vs0, make a new layer when ΔVs > 0.1 jsb
     ddz = 0.01#depth increment to search by
     Vs0 = vsv_model.vsv[0]
@@ -937,14 +953,15 @@ def convert_vsv_model_to_disba_model(vsv_model:VsvModel, model_params:ModelParam
     depth     = np.flipud(np.cumsum(depth))
     depth[0]  = model_params.depth_limits[1]#it will have overshot
     radius    = (radius_Earth - depth)*1e3
+    """
 
     #old block that makes a card model every 2 km
-    #depth  = np.cumsum(depth)
-    #step   = model_params.min_layer_thickness / 3
-    #radius = np.arange(radius_model_base, radius_model_top, step)
-    #radius = np.append(radius, radius_model_top)
-    #depth  = (radius_Earth - radius) # still in km at this point
-    #radius *= 1e3 # convert to SI
+    depth  = np.cumsum(depth)
+    step   = model_params.min_layer_thickness / 3
+    radius = np.arange(radius_model_base, radius_model_top, step)
+    radius = np.append(radius, radius_model_top)
+    depth  = (radius_Earth - radius) # still in km at this point
+    radius *= 1e3 # convert to SI
 
     vsv = np.interp(depth,
                     np.cumsum(vsv_model.thickness),

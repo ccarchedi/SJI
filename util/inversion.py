@@ -150,6 +150,7 @@ def _inversion_iteration(model_params:define_models.ModelParams,
         mineos_model = define_models.convert_vsv_model_to_mineos_model(
             model, model_params
         )
+
         # Can vary other parameters in MINEOS by putting them as inputs to this call
         # e.g. defaults include l_min, l_max; qmod_path; phase_or_group_velocity
         ph_vel_pred, kernels = mineos.run_mineos_and_kernels(
