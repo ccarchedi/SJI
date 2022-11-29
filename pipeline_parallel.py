@@ -65,27 +65,52 @@ def run_inversion_loc(name:str, location:tuple, mdep:int, attempts:int):
     define_models.save_model(model, name)
     shutil.rmtree("./output/" + name)
 
-    return 1
+    return model
 
 def main(mdep:int=400, attempts:int=5):
 
     name = "Data8322"
-    lat = np.arange(25,51,0.5)
-    lon = np.arange(-125.,-65,0.5)
+    #lat = np.arange(25,51,0.5)
+    #lon = np.arange(-125.,-65,0.5)
     #lat = np.arange(33.,45.5,0.5)
     #lon = np.arange(-119.,-100.5,0.5)
 
-    LT, LN = np.meshgrid(lat, lon)
+    #LT, LN = np.meshgrid(lat, lon)
 
-    LT = LT.flatten()
-    LN = LN.flatten()
+    #LT = LT.flatten()
+    #LN = LN.flatten()
+
+    depth = np.linspace(0, mdep, num=20*mdep)
+
+    #hardwire a single location here. Don't need to return model if doing a loop
+    model = run_inversion_loc(name, (LAT,LON), mdep, attempts)
+
+    mz     = np.cumsum(model.thickness)
+    vseven = np.interp(depth, mz, model.vsv.flatten())
+
+    t = np.cumsum(model.thickness)
+    interface_z = t[model.boundary_inds]
+
+    plt.figure()
+    plt.plot(vseven,depth)
+    plt.ylim(mdep, 0)
+    plt.grid()
+    plt.hlines(interface_z[0], min(model.vsv),max(model.vsv),linestyles='--',color='black')
+    plt.hlines(interface_z[1], min(model.vsv),max(model.vsv), linestyles='--',color='black')
+    plt.hlines(interface_z[2], min(model.vsv),max(model.vsv), linestyles='--',color='black')
+    plt.text(model.vsv[model.boundary_inds[0]+1] - 0.1,interface_z[0] - 5,'B1 depth=' + str(round(interface_z[0])) + ' km')
+    plt.text(model.vsv[model.boundary_inds[1]+1] + 0.1,interface_z[1] + 15,'B2 depth=' + str(round(interface_z[1])) + ' km')
+    plt.text(model.vsv[model.boundary_inds[2]+1] + 0.1,interface_z[2] + 15,'B3 depth=' + str(round(interface_z[3])) + ' km')
+    plt.xlabel('Vs, km/s (s)')
+    plt.ylabel('Depth, km')
+    plt.savefig(name +'.pdf')
 
     #for k in np.arange(0, len(LT)):
     #for k in np.arange(0, 1):
     #for k in np.arange(0, len(LT)):
     #    run_inversion_loc(name, (LT[k],LN[k]), mdep, attempts)
-    pool = mp.Pool(mp.cpu_count())
-    list(pool.map(lambda k:run_inversion_loc(name, (LT[k],LN[k]), mdep, attempts), range(len(LT))))
+    #pool = mp.Pool(mp.cpu_count())
+    #list(pool.map(lambda k:run_inversion_loc(name, (LT[k],LN[k]), mdep, attempts), range(len(LT))))
 
 if __name__ == '__main__':
 
