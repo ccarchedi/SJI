@@ -329,6 +329,10 @@ def _load_observed_sw_constraints():
             phvel = phvel.append(_load_ambient_noise(data_dir, file))
         if 'helmholtz' in file: # ASWMS data
             phvel = phvel.append(_load_earthquake_sw(data_dir, file))
+        if 'eikonal' in file: # ASWMS data. Same format
+            phvel = phvel.append(_load_earthquake_sw(data_dir, file))
+        if 'ambientnoise' in file: # data formatted like the ASWMS data
+            phvel = phvel.append(_load_earthquake_sw(data_dir, file))
         if 'BD19' in file: # Longer T surface waves: Babikoff & Dalton, 2019
             c = _load_earthquake_sw_BD19(data_dir, file)
             if c.period[0] not in phvel.period.unique():
@@ -336,7 +340,6 @@ def _load_observed_sw_constraints():
     phvel = phvel.sort_values(by=['period', 'lat', 'lon']).reset_index(drop=True)
 
     return phvel
-
 
 def _load_ambient_noise(data_dir:str, file:str):
     """
