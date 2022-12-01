@@ -43,9 +43,10 @@ def run_with_no_inputs():
     #return run_inversion(model_params, loc)
     return run_inversion(model_params, location)
 
-def run_inversion_TAarray(model_params:define_models.ModelParams,
-                  location:tuple, n_iterations:int=10) -> (define_models.VsvModel):
+def run_inversion_ArrayData(model_params:define_models.ModelParams,
+                  location:tuple, model:define_models.VsvModel, n_iterations:int=10) -> (define_models.VsvModel):
     """ Set the inversion running over some number of iterations.
+    Note - this version requires that you supply the starting model
     """
 
     obs_constraints = constraints.extract_observations(
@@ -63,8 +64,6 @@ def run_inversion_TAarray(model_params:define_models.ModelParams,
         #remove the LAB constraint
         model_params = model_params._replace(boundaries=( \
             (model_params.boundaries[0][0],),model_params.boundaries[1][0], model_params.boundaries[2][0]))
-
-    model = define_models.setup_starting_model(model_params, location, breadth)
 
     if any(np.isnan(model.vsv)):
         return model, obs_constraints, np.Inf

@@ -40,11 +40,12 @@ def run_inversion_loc(name:str, location:tuple, mdep:int, attempts:int):
     failcheck = 0
 
     #(model, obs, misfit) = inversion.run_inversion_TAarray(model_params,location,25)
+    sm = define_models.custom_starting_model(model_params, np.array([ 1, 3.5, 4.2, 4.5 ]), np.array([ 0, 4, 12, 21 ]), np.array(model_params.boundaries[1]))
 
     while failcheck < attempts:
 
         try:
-            (model, obs, misfit) = inversion.run_inversion_TAarray(model_params,location,25)
+            (model, obs, misfit) = inversion.run_inversion_ArrayData(model_params,location,sm,25)
 
             if model is None:
                 return
@@ -83,6 +84,7 @@ def main(mdep:int=400, attempts:int=5):
     depth = np.linspace(0, mdep, num=20*mdep)
 
     #hardwire a single location here. Don't need to return model if doing a loop
+
     model = run_inversion_loc(name, (LAT,LON), mdep, attempts)
 
     mz     = np.cumsum(model.thickness)

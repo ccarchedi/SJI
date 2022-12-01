@@ -277,8 +277,49 @@ class EarthLayerIndices(typing.NamedTuple):
 #       Set up the models for various stages of the calculation
 # =============================================================================
 
+def custom_starting_model(model_params: ModelParams, vs:np.array, depth:np.array, breadth:np.array) -> VsvModel:
+    """
+    Make a starting model from an array of Vs and depths
+    """
+    # Set up directory to save to
+    if not os.path.exists('output'):
+        os.mkdir('output')
+    if not os.path.exists('output/' + model_params.id):
+        os.mkdir('output/' + model_params.id)
+    #else:
+    #    print('This model ID has already been used!') jsb
+
+    thick = np.hstack((0,np.diff(depth)))
+    #thick[ thick < 0.1 ] = 0.1
+
+    vs    = np.ndarray.tolist(vs)
+    thick = np.ndarray.tolist(thick)
+
+    # Fill in to the base of the model
+    _fill_in_base_of_model(thick, vs, model_params)
+
+    # Add on the boundary layers at arbitrary depths (will be fixed by inversion)
+    bi = _add_BLs_to_starting_model(thick, model_params, breadth)
+
+    # Fix the model spacing
+    thickness, vsv, boundary_inds = _return_evenly_spaced_model(
+        VsvModel(_list_to_col(vs), _list_to_col(thick), np.array(bi), []),
+        model_params.min_layer_thickness,
+    )
+    depth_inds = _find_depth_indices(thickness, model_params.depth_limits)
+
+    # Add random noise
+    model = _add_noise_to_starting_model(
+        VsvModel(vsv, thickness, boundary_inds, depth_inds), model_params.depth_limits
+    , model_params.randomize_model) #jsb added randomize
+
+    return model
+
+
 def setup_starting_model(model_params: ModelParams, location: tuple, breadth:np.array) -> VsvModel:
     """ Convert from ModelParams to VsvModel.
+
+    This script just uses PREM if you want want a custom starting model
 
     ModelParams is the bare bones of fixed parameters for the starting model. Here we create a VsvModel object using ModelParams. Note that this is in a different format to the model that we actually want to invert, m = np.vstack(
                     (VsvModel.vsv[VsvModel.d_inds],
@@ -323,6 +364,8 @@ def setup_starting_model(model_params: ModelParams, location: tuple, breadth:np.
     depth = depth[ depth < model_params.depth_limits[1] ]
     thick = np.hstack((0,np.diff(depth)))
     #thick[ thick < 0.1 ] = 0.1
+
+    breakpoint()
 
     vs    = np.ndarray.tolist(vs)
     thick = np.ndarray.tolist(thick)
