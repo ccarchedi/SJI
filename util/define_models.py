@@ -164,23 +164,23 @@ class ModelParams(typing.NamedTuple):
         """
 
     id: str
-    boundaries: tuple          = (('Moho', 'LAB'), [1, 10], [0.25, 0.5])#name, width, width of smoothing kernel (jsb)
-    #boundaries: tuple          = (('Sed', 'Moho', 'LAB'), [0, 1, 10], [0.01, 0.25, 0.5])#name, width, width of smoothing kernel (jsb)
+    # boundaries: tuple          = (('Moho', 'LAB'), [1, 10], [0.25, 0.5])#name, width, width of smoothing kernel (jsb)
+    boundaries: tuple          = (('Sed', 'Moho', 'LAB'), [0, 1, 10], [0.01, 0.25, 0.5])#name, width, width of smoothing kernel (jsb)
     #boundaries: tuple          = ( ('Moho',), [1], [0.25])#name, width, width of smoothing kernel (jsb)
-    depth_limits: tuple        = (0, 400)
-    min_layer_thickness: float = 6.
+    depth_limits: tuple        = (0, 100)
+    min_layer_thickness: float = 1.
     min_num_layers: int        = 5
     vsv_vsh_ratio: float       = 1.
     vpv_vsv_ratio: float       = 1.76
     vpv_vph_ratio: float       = 1.
     eta: float                 = 1.
     ref_card_csv_name: str     = 'data/earth_models/prem.csv'
-    method: str                = 'mineos' #which surface wave code do you want to use?
+    method: str                = 'disba' #which surface wave code do you want to use?
     q_model: str               = './data/earth_models/qmod3' #name of the q model used for corrections with mineos
 
     #added by jsb
     perturbation_threshold:float = 0.1
-    head_wave: bool              = True
+    head_wave: bool              = False
     head_wave_smoothing          = 0.5 #in degrees
     breadth:float                = 1 #0 is values in boundaries, otherwise loadedvalue*breath
     randomize_model: bool        = False

@@ -6,12 +6,15 @@ function observations.
 import re
 import os
 
+import warnings
 import numpy as np
 import pandas as pd
 import xarray as xr # for loading netcdf
 import math
 from scipy.interpolate import interp1d
 import netCDF4 as nc
+
+warnings.simplefilter(action='ignore',category=FutureWarning)
 
 # =============================================================================
 # Set up classes for commonly used variables
@@ -117,7 +120,8 @@ def _extract_rf_constraints(location:tuple, id:str, boundaries:pd.DataFrame,
     #all_rfs = pd.read_csv('data/RFconstraints/a_priori_constraints.csv')
     #all_rfs = pd.read_csv('data/RFconstraints/a_priori_constraints_breadth.csv')
     #all_rfs = pd.read_csv('data/RFconstraints/a_priori_constraints_sed.csv')
-    all_rfs = pd.read_csv('data/RFconstraints/a_priori_constraints_Continent.csv')
+    # all_rfs = pd.read_csv('data/RFconstraints/a_priori_constraints_Continent.csv')
+    all_rfs = pd.read_csv('data/RFconstraints/a_priori_constraints_BIMA.csv')
 
     ind,flag = _find_closest_lat_lon(all_rfs.copy(), location, 0.25)
 
@@ -377,7 +381,9 @@ def _load_earthquake_sw(data_dir:str, file:str):
     """
     # Find period of observations
     # Filenames are R[period]_USANT15.pix, so split on R or _
-    period = float(re.split('_|\.', file)[-2])
+    # period = float(re.split('_|\.', file)[-2])
+    pp = (re.split("_",file)[-1]) #assumes format ends with PERIOD.PERIOD.xyz
+    period = float(pp[:-4])
 
     surface_waves = pd.read_csv(data_dir + file, sep='\s+', header=None)
     surface_waves.columns = ['lat', 'lon', 'ph_vel']
